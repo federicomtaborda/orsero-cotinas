@@ -17,7 +17,7 @@ var product = {
                 }
             },
             columns: [
-                {"data": "id"},
+                {"data": "codigo"},
                 {"data": "name"},
                 {"data": "category.name"},
                 {"data": "image"},
@@ -32,7 +32,7 @@ var product = {
                     class: 'text-center',
                     orderable: false,
                     render: function (data, type, row) {
-                        return '<img alt="" src="' + data + '" class="img-fluid d-block mx-auto" style="width: 20px; height: 20px;">';
+                        return '<img alt="" src="' + data + '" class="img-fluid d-block mx-auto" style="width: 40px; height: 40px;">';
                     }
                 },
                 {

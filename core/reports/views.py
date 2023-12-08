@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 
-from core.pos.models import Sale
+from core.pos.models import OrdenDeTrabajo
 from core.reports.forms import ReportForm
 
 

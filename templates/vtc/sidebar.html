@@ -1,11 +1,11 @@
 {% load static %}
 <aside class="main-sidebar sidebar-light-primary elevation-1">
     <a href="{% url 'dashboard' %}" class="brand-link">
-        <img src="{% static 'img/logo.png' %}"
+        <img src="{% static 'img/logo_oc.jpg' %}"
              alt="AdminLTE Logo"
              class="brand-image img-circle"
-             style="opacity: .8">
-        <span class="brand-text font-weight-bold">Apolo V.4.0</span>
+             style="opacity: .9">
+        <span class="brand-text font-weight-bold">ORSERO CORTINAS</span>
     </a>
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -21,7 +21,7 @@
                 <li class="nav-header">Mantenimientos</li>
                 <li class="nav-item">
                     <a href="{% url 'company_update' %}" class="nav-link">
-                        <i class="nav-icon fas fa-building"></i>
+                         <i class="nav-icon fas fa-building"></i>
                         <p>
                             Compañia
                         </p>
@@ -39,7 +39,7 @@
                     <a href="{% url 'product_list' %}" class="nav-link">
                         <i class="nav-icon fas fa-boxes"></i>
                         <p>
-                            Productos
+                            Articulos
                         </p>
                     </a>
                 </li>
@@ -53,9 +53,9 @@
                 </li>
                 <li class="nav-item">
                     <a href="{% url 'sale_list' %}" class="nav-link">
-                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <i class="nav-icon fa fa-list-ol"></i>
                         <p>
-                            Ventas
+                            Ordenes de Trabajo
                         </p>
                     </a>
                 </li>

@@ -14,7 +14,7 @@ from weasyprint import HTML, CSS
 
 from core.pos.forms import SaleForm, ClientForm
 from core.pos.mixins import ValidatePermissionRequiredMixin, ExistsCompanyMixin
-from core.pos.models import Sale, Product, SaleProduct, Client
+from core.pos.models import OrdenDeTrabajo, Product, Client
 from core.reports.forms import ReportForm
 
 
@@ -56,7 +56,7 @@ class SaleListView(ExistsCompanyMixin, ValidatePermissionRequiredMixin, FormView
 
 
 class SaleCreateView(ExistsCompanyMixin, ValidatePermissionRequiredMixin, CreateView):
-    model = Sale
+    model = OrdenDeTrabajo
     form_class = SaleForm
     template_name = 'sale/create.html'
     success_url = reverse_lazy('sale_list')
@@ -140,7 +140,7 @@ class SaleCreateView(ExistsCompanyMixin, ValidatePermissionRequiredMixin, Create
 
 
 class SaleUpdateView(ExistsCompanyMixin, ValidatePermissionRequiredMixin, UpdateView):
-    model = Sale
+    model = OrdenDeTrabajo
     form_class = SaleForm
     template_name = 'sale/create.html'
     success_url = reverse_lazy('sale_list')
@@ -242,7 +242,7 @@ class SaleUpdateView(ExistsCompanyMixin, ValidatePermissionRequiredMixin, Update
 
 
 class SaleDeleteView(ExistsCompanyMixin, ValidatePermissionRequiredMixin, DeleteView):
-    model = Sale
+    model = OrdenDeTrabajo
     template_name = 'sale/delete.html'
     success_url = reverse_lazy('sale_list')
     url_redirect = success_url

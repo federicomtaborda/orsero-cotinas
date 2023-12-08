@@ -2,12 +2,12 @@
 {% load widget_tweaks %}
 {% block content %}
     <div class="login-box">
-        <div class="login-logo">
-            <a href="{% url 'index' %}"><b>A</b>polo</a>
+        <div class="login-logo" style="font-size: 2.5rem">
+            <b>O</b>rsero <b>C</b>ortinas
         </div>
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Inicie sesión con sus credenciales</p>
+                <p class="login-box-msg">Inicio de Sesión</p>
                 <form action="." method="post">
                     <input type="hidden" name="next" value="{{ next }}">
                     {% csrf_token %}
@@ -35,9 +35,10 @@
                             </button>
                         </div>
                     </div>
-                    <p class="text-center mt-2" style="font-size: 13px;">
-                        Si no recuerdas tu contraseña puedes resetearla dando click <a href="{% url 'reset_password' %}">aqui </a>
-                    </p>
+{#                    <p class="text-center mt-2" style="font-size: 13px;">#}
+{#                        Si no recuerdas tu contraseña puedes resetearla dando click <a href="{% url 'reset_password' %}">aqui </a>#}
+{#                    </p>#}
+                    <br>
                 </form>
             </div>
         </div>

@@ -37,13 +37,21 @@
                         </div>
                     {% endif %}
                     {% for field in form.visible_fields %}
-                        <div class="form-group">
-                            <label for="email">{{ field.label }}:</label>
-                            {% if field|is_checkbox %}
-                               <br>{{ field }}
-                            {% else %}
-                                {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
-                            {% endif %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            <!-- Inicio de nueva fila en cada segundo campo -->
+                            </div>
+                            <div class="row">
+                        {% endif %}
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                                {% if field|is_checkbox %}
+                                    <br>{{ field }}
+                                {% else %}
+                                    {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+                                {% endif %}
+                            </div>
                         </div>
                     {% endfor %}
                 </div>

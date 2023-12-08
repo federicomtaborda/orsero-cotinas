@@ -108,7 +108,7 @@ class SaleForm(ModelForm):
         self.fields['client'].queryset = Client.objects.none()
 
     class Meta:
-        model = Sale
+        model = OrdenDeTrabajo
         fields = '__all__'
         widgets = {
             'client': forms.Select(attrs={
