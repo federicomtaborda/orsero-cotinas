@@ -68,7 +68,7 @@ class Client(models.Model):
     direccion_de_trabajo = models.CharField(max_length=150, null=True, blank=True, verbose_name='Dirección de Trabajo')
     telefono_celular = models.CharField(max_length=150, null=True, blank=True, verbose_name='Tel Celular')
     otro_telefono = models.CharField(max_length=150, null=True, blank=True, verbose_name='Otro Teléfono')
-    email = models.CharField(max_length=100, null=True, blank=True, verbose_name='Correo Electrónico')
+    email = models.EmailField(max_length=100, null=True, blank=True, verbose_name='Correo Electrónico')
     observaciones_cliente = models.CharField(max_length=200, null=True, blank=True, verbose_name='Observaciones del cliente')
 
     def __str__(self):
@@ -79,9 +79,6 @@ class Client(models.Model):
 
     def toJSON(self):
         item = model_to_dict(self)
-        item['gender'] = {'id': self.gender, 'name': self.get_gender_display()}
-        item['birthdate'] = self.birthdate.strftime('%Y-%m-%d')
-        item['full_name'] = self.get_full_name()
         return item
 
     class Meta:

@@ -19,9 +19,12 @@ var client = {
             columns: [
                 {"data": "id"},
                 {"data": "names"},
-                {"data": "dni"},
-                {"data": "birthdate"},
-                {"data": "gender.name"},
+                {"data": "direccion_postal"},
+                {"data": "direccion_de_trabajo"},
+                {"data": "telefono_celular"},
+                {"data": "otro_telefono"},
+                {"data": "email"},
+                {"data": "observaciones_cliente"},
                 {"data": "id"},
             ],
             columnDefs: [
@@ -30,8 +33,8 @@ var client = {
                     class: 'text-center',
                     orderable: false,
                     render: function (data, type, row) {
-                        var buttons = '<a href="' + pathname + 'update/' + row.id + '/" class="btn btn-warning btn-xs btn-flat"><i class="fas fa-edit"></i></a> ';
-                        buttons += '<a href="' + pathname + 'delete/' + row.id + '/" type="button" class="btn btn-danger btn-xs btn-flat"><i class="fas fa-trash-alt"></i></a>';
+                        var buttons = '<a href="' + pathname + 'update/' + row.id + '/" class="btn btn-dark btn-xs btn-flat"><i class="fas fa-edit"></i></a> ';
+                        buttons += '<a href="' + pathname + 'delete/' + row.id + '/" type="button" class="btn btn-dark btn-xs btn-flat"><i class="fas fa-trash-alt"></i></a>';
                         return buttons;
                     }
                 },
