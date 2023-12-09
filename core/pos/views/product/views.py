@@ -63,8 +63,8 @@ class ProductCreateView(ValidatePermissionRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Creación de un Producto'
-        context['entity'] = 'Productos'
+        context['title'] = 'Creación de un Articulo'
+        context['entity'] = 'Articulos'
         context['list_url'] = self.success_url
         context['action'] = 'add'
         return context
@@ -97,8 +97,8 @@ class ProductUpdateView(ValidatePermissionRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Edición de un Producto'
-        context['entity'] = 'Productos'
+        context['title'] = 'Edición de un Articulo'
+        context['entity'] = 'Articulos'
         context['list_url'] = self.success_url
         context['action'] = 'edit'
         return context
@@ -126,7 +126,7 @@ class ProductDeleteView(ValidatePermissionRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Eliminación de un Producto'
-        context['entity'] = 'Productos'
+        context['title'] = 'Eliminación de un Articulo'
+        context['entity'] = 'Articulos'
         context['list_url'] = self.success_url
         return context
