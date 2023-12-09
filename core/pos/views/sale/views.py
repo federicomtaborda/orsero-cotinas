@@ -130,8 +130,8 @@ class SaleCreateView(ExistsCompanyMixin, ValidatePermissionRequiredMixin, Create
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Creación de una Venta'
-        context['entity'] = 'Ventas'
+        context['title'] = 'Creación Rden de Trabajo'
+        context['entity'] = 'Orden de Tabajo'
         context['list_url'] = self.success_url
         context['action'] = 'add'
         context['products'] = []
