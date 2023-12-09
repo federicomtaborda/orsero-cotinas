@@ -1,50 +1,35 @@
-var input_is_inventoried;
 
 $(function () {
-    input_is_inventoried = $('input[name="is_inventoried"]');
 
     $('.select2').select2({
-        theme: "bootstrap4",
-        language: 'es'
+        theme: 'bootstrap4',
+        language: "es"
     });
 
-    $('input[name="pvp"]')
-        .TouchSpin({
-            min: 0.01,
-            max: 1000000,
-            step: 0.01,
-            decimals: 2,
-            boostat: 5,
-            verticalbuttons: true,
-            maxboostedstep: 10,
-            prefix: '$'
-        })
-        .on('keypress', function (e) {
-            return validate_decimals($(this), e);
-        });
+    $("#id_costo_total, #id_precio_venta").prop('readonly', true);
 
-    $('input[name="stock"]')
-        .TouchSpin({
-            min: 0,
-            max: 1000000,
-            step: 1,
-            verticalbuttons: true,
-        })
-        .on('keypress', function (e) {
-            return validate_form_text('numbers', e, null);
-        });
+    function calcularTotal() {
+            // Obtener los valores de los inputs
+            var costoM2 = parseFloat($("#id_costo_m2").val()) || 0;
+            var costoColocacion = parseFloat($("#id_costo_colocacion").val()) || 0;
+            var costoFlete = parseFloat($("#id_costo_flete").val()) || 0;
+            var otrosCostos = parseFloat($("#id_otros_costos").val()) || 0;
+            var gananciaEstimada = parseFloat($("#id_ganancia_estimada").val()) || 0;
 
-    input_is_inventoried.on('change', function () {
-        var container = $(this).parent().parent().find('input[name="stock"]').parent().parent();
-        $(container).show();
-        if (!this.checked) {
-            $(container).hide();
+            // Calcular el total del costo;
+            var total = costoColocacion + costoFlete + otrosCostos + costoM2;
+
+            // Calculo de Ganancia
+            var total_ganancia = total * gananciaEstimada / 100 + total;
+
+            // Mostrar el total en el elemento con ID "total"
+            $("#id_costo_total").val(total.toFixed(2));
+
+            // Muestrar precio de venta total
+            $("#id_precio_venta").val(total_ganancia.toFixed(2));
         }
-    });
 
-    if ($('input[name="action"]').val() === 'edit') {
-        input_is_inventoried.trigger('change');
-    }
-
-    // input_is_inventoried.removeClass();
+        // Llamar a la función al cambiar cualquiera de los tres inputs
+        $("#id_costo_colocacion, #id_costo_flete, #id_otros_costos, #id_costo_m2, #id_ganancia_estimada")
+        .on("input", calcularTotal);
 });

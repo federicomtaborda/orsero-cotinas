@@ -35,10 +35,11 @@ class Product(models.Model):
                                                                                                        'Colocación')
     costo_flete= models.DecimalField(default=0.00, max_digits=10, decimal_places=2,verbose_name='Costo Flete')
     otros_costos = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Otros Costos')
-    costo_totol = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Costo Total')
-    gancia_estimada = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Ganancia '
+    costo_total = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Costo Total')
+    ganancia_estimada = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Ganancia '
                                                                                                       'Estimada')
     tiempo_colocacion = models.TimeField(default=time(0, 0), verbose_name='Tiempo de Colocación')
+    precio_venta = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Precio de Venta')
 
     def __str__(self):
         return f'{self.name} ({self.category.name})'
