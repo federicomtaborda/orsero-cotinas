@@ -119,8 +119,7 @@ $(function () {
         language: 'es'
     });
 
-    // Client
-
+    // search clientes
     select_client.select2({
         theme: "bootstrap4",
         language: 'es',
@@ -177,37 +176,8 @@ $(function () {
             });
     });
 
-    // Products
-    /*select_search_product.autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: pathname,
-                type: 'POST',
-                data: {
-                    'action': 'search_products',
-                    'term': request.term
-                },
-                dataType: 'json',
-            }).done(function (data) {
-                response(data);
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                //alert(textStatus + ': ' + errorThrown);
-            }).always(function (data) {
 
-            });
-        },
-        delay: 500,
-        minLength: 1,
-        select: function (event, ui) {
-            event.preventDefault();
-            console.clear();
-            ui.item.cant = 1;
-            ui.item.subtotal = 0.00;
-            sale.addProduct(ui.item);
-            $(this).val('');
-        }
-    });*/
-
+    // search articulos
     select_search_product.select2({
         theme: "bootstrap4",
         language: 'es',
@@ -248,15 +218,12 @@ $(function () {
             return $(
                 '<div class="wrapper container">' +
                 '<div class="row">' +
-                '<div class="col-lg-1">' +
-                '<img alt="" src="' + repo.image + '" class="img-fluid img-thumbnail d-block mx-auto rounded">' +
-                '</div>' +
-                '<div class="col-lg-11 text-left shadow-sm">' +
+                '<div class="text-left shadow-sm">' +
                 //'<br>' +
                 '<p style="margin-bottom: 0;">' +
-                '<b>Nombre:</b> ' + repo.full_name + '<br>' +
-                '<b>Stock:</b> ' + stock + '<br>' +
-                '<b>PVP:</b> <span class="badge badge-warning">$' + repo.pvp + '</span>' +
+                '<b>Nombre:</b> ' + repo.name + '<br>' +
+                '<b>Stock:</b>$ ' + repo.costo_total + '<br>' +
+                '<b>PVP:</b> <span class="badge badge-warning">$' + repo.precio_venta + '</span>' +
                 '</p>' +
                 '</div>' +
                 '</div>' +
