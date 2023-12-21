@@ -26,20 +26,23 @@ class Category(models.Model):
         ordering = ['id']
 
 
+
 class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='Descripción', unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Categoría')
+
     image = models.ImageField(upload_to='product/%Y/%m/%d', null=True, blank=True, verbose_name='Imagen')
-    costo_m2 = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Costo M2')
-    costo_colocacion = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Costo '
-                                                                                                       'Colocación')
-    costo_flete= models.DecimalField(default=0.00, max_digits=10, decimal_places=2,verbose_name='Costo Flete')
-    otros_costos = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Otros Costos')
-    costo_total = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Costo Total')
-    ganancia_estimada = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Ganancia '
-                                                                                                      'Estimada')
-    tiempo_colocacion = models.TimeField(default=time(0, 0), verbose_name='Tiempo de Colocación')
-    precio_venta = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Precio de Venta')
+
+    # costo_m2 = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Costo M2')
+    # costo_colocacion = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Costo '
+    #                                                                                                    'Colocación')
+    # costo_flete= models.DecimalField(default=0.00, max_digits=10, decimal_places=2,verbose_name='Costo Flete')
+    # otros_costos = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Otros Costos')
+    # costo_total = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Costo Total')
+    # ganancia_estimada = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Ganancia '
+    #                                                                                                   'Estimada')
+    # tiempo_colocacion = models.TimeField(default=time(0, 0), verbose_name='Tiempo de Colocación')
+    # precio_venta = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Precio de Venta')
 
     def __str__(self):
         return f'{self.name} ({self.category.name})'
@@ -62,6 +65,16 @@ class Product(models.Model):
         ordering = ['id']
 
 
+class AtributoProduct(models.Model):
+    atributo_costo = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Atributo de Costo'
+                                       , null=True)
+    atributo = models.CharField(max_length=250, verbose_name='Atributo de Costo', unique=True)
+    costo = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Costo')
+
+    def __str__(self):
+        return self.atributo
+
+
 class Client(models.Model):
     names = models.CharField(max_length=150, verbose_name='Nombres')
     direccion_postal = models.CharField(max_length=150, null=True, blank=True, verbose_name='Dirección Postal')
@@ -69,7 +82,8 @@ class Client(models.Model):
     telefono_celular = models.CharField(max_length=150, null=True, blank=True, verbose_name='Tel Celular')
     otro_telefono = models.CharField(max_length=150, null=True, blank=True, verbose_name='Otro Teléfono')
     email = models.EmailField(max_length=100, null=True, blank=True, verbose_name='Correo Electrónico')
-    observaciones_cliente = models.CharField(max_length=200, null=True, blank=True, verbose_name='Observaciones del cliente')
+    observaciones_cliente = models.CharField(max_length=200, null=True, blank=True,
+                                             verbose_name='Observaciones del cliente')
 
     def __str__(self):
         return self.get_full_name()
@@ -158,7 +172,8 @@ class OrdenDeTrabajo(models.Model):
 
 
     def calculate_invoice(self):
-        subtotal = self.saleproduct_set.all().aggregate(result=Coalesce(Sum(F('price') * F('cant')), 0.00, output_field=FloatField())).get('result')
+        subtotal = self.saleproduct_set.all().aggregate(
+            result=Coalesce(Sum(F('price') * F('cant')), 0.00, output_field=FloatField())).get('result')
         self.subtotal = subtotal
         self.total_iva = self.subtotal * float(self.iva)
         self.total = float(self.subtotal) + float(self.total_iva)
@@ -170,7 +185,7 @@ class OrdenDeTrabajo(models.Model):
         ordering = ['id']
 
 
-
+        
 # class SaleProduct(models.Model):
 #     sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
 #     product = models.ForeignKey(Product, on_delete=models.CASCADE)
