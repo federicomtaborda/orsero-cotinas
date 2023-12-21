@@ -31,14 +31,9 @@
             </div>
             <div class="card-body">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-8">
+                    <div class="row mt-2">
+                        <div class="col-lg-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        <b><i class="fas fa-boxes"></i> Detalle de productos</b>
-                                    </h3>
-                                </div>
                                 <div class="card-body">
                                     <div class="container-fluid">
                                         <div class="form-group">
@@ -66,27 +61,71 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>
-                                        <table class="table table-bordered" id="tblProducts">
-                                            <thead>
-                                            <tr>
-                                                <th>Eliminar</th>
-                                                <th>Producto</th>
-                                                <th>Stock</th>
-                                                <th>Precio Unitario</th>
-                                                <th>Cantidad</th>
-                                                <th>Subtotal</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
+
+                                        <!-- card articulos-->
+
+
+                                        <div class="container-fluid">
+                                          <div class="card">
+                                            <div class="card-header">
+                                              <h5 class="card-title">Formulario</h5>
+                                            </div>
+                                            <div class="card-body">
+                                              <form>
+                                                <div class="form-row">
+                                                  <div class="col-3">
+                                                    <label for="campo1">Campo 1:</label>
+                                                    <input type="text" class="form-control" id="campo1" placeholder="Ingrese valor">
+                                                  </div>
+                                                  <div class="col-3">
+                                                    <label for="campo2">Campo 2:</label>
+                                                    <input type="text" class="form-control" id="campo2" placeholder="Ingrese valor">
+                                                  </div>
+                                                  <div class="col-3">
+                                                    <label for="campo3">Campo 3:</label>
+                                                    <input type="text" class="form-control" id="campo3" placeholder="Ingrese valor">
+                                                  </div>
+                                                  <div class="col-3">
+                                                    <label for="campo4">Campo 4:</label>
+                                                    <input type="text" class="form-control" id="campo4" placeholder="Ingrese valor">
+                                                  </div>
+                                                </div>
+                                                <div class="form-row mt-3">
+                                                  <div class="col-3">
+                                                    <label for="campo5">Campo 5:</label>
+                                                    <input type="text" class="form-control" id="campo5" placeholder="Ingrese valor">
+                                                  </div>
+                                                  <div class="col-3">
+                                                    <label for="campo6">Campo 6:</label>
+                                                    <input type="text" class="form-control" id="campo6" placeholder="Ingrese valor">
+                                                  </div>
+                                                  <div class="col-3">
+                                                    <label for="campo7">Campo 7:</label>
+                                                    <input type="text" class="form-control" id="campo7" placeholder="Ingrese valor">
+                                                  </div>
+                                                  <div class="col-3">
+                                                    <label for="campo8">Campo 8:</label>
+                                                    <input type="text" class="form-control" id="campo8" placeholder="Ingrese valor">
+                                                  </div>
+                                                </div>
+{#                                                <div class="form-row mt-3">#}
+{#                                                    <div class="col-12">#}
+{#                                                      <button type="submit" class="btn-group-sm btn-primary">Enviar</button>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+                                              </form>
+                                            </div>
+                                          </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="col-lg-4">
+                    </div>
+                    <div class="row my-5">
+                        <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title"><b><i class="fas fa-shopping-cart"></i> Datos de la factura</b></h3>
@@ -206,6 +245,5 @@
 
     <script>
         sale.details.products = {{ products|safe }};
-        // Se removio el vents.list(); para calcular bien el iva en el editar. Revisar al final del archivo form.js se lo puso.
     </script>
 {% endblock %}

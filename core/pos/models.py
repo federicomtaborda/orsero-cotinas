@@ -49,7 +49,7 @@ class Product(models.Model):
 
     def toJSON(self):
         item = model_to_dict(self)
-        item['full_name'] = self.__str__()
+        item['name'] = self.__str__()
         item['category'] = self.category.toJSON()
         item['image'] = self.get_image()
         return item
@@ -60,8 +60,8 @@ class Product(models.Model):
         return f'{settings.STATIC_URL}img/empty.png'
 
     class Meta:
-        verbose_name = 'Producto'
-        verbose_name_plural = 'Productos'
+        verbose_name = 'Articulo'
+        verbose_name_plural = 'Articulos'
         ordering = ['id']
 
 
@@ -169,11 +169,7 @@ class OrdenDeTrabajo(models.Model):
         item['saleproduct'] = [i.toJSON() for i in self.saleproduct_set.all()]
         return item
 
-    def delete(self, using=None, keep_parents=False):
-        for detail in self.saleproduct_set.filter(product__is_inventoried=True):
-            detail.product.stock += detail.cant
-            detail.product.save()
-        super(Sale, self).delete()
+
 
     def calculate_invoice(self):
         subtotal = self.saleproduct_set.all().aggregate(
@@ -188,6 +184,8 @@ class OrdenDeTrabajo(models.Model):
         verbose_name_plural = 'Ventas'
         ordering = ['id']
 
+
+        
 # class SaleProduct(models.Model):
 #     sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
 #     product = models.ForeignKey(Product, on_delete=models.CASCADE)
