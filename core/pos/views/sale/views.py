@@ -83,7 +83,7 @@ class SaleCreateView(ExistsCompanyMixin, ValidatePermissionRequiredMixin, Create
                 ids_exclude = json.loads(request.POST['ids'])
                 term = request.POST['term'].strip()
                 data.append({'id': term, 'text': term})
-                products = Product.objects.filter(name__icontains=term).filter(Q(stock__gt=0) | Q(is_inventoried=False))
+                products = Product.objects.filter(name__icontains=term)
                 for i in products.exclude(id__in=ids_exclude)[0:10]:
                     item = i.toJSON()
                     item['text'] = i.__str__()
@@ -91,7 +91,7 @@ class SaleCreateView(ExistsCompanyMixin, ValidatePermissionRequiredMixin, Create
             elif action == 'add':
                 with transaction.atomic():
                     products = json.loads(request.POST['products'])
-                    sale = Sale()
+                    sale = OrdenDeTrabajo()
                     sale.date_joined = request.POST['date_joined']
                     sale.client_id = int(request.POST['client'])
                     sale.iva = float(request.POST['iva'])
@@ -112,8 +112,7 @@ class SaleCreateView(ExistsCompanyMixin, ValidatePermissionRequiredMixin, Create
             elif action == 'search_client':
                 data = []
                 term = request.POST['term']
-                clients = Client.objects.filter(
-                    Q(names__icontains=term) | Q(dni__icontains=term))[0:10]
+                clients = Client.objects.filter(names__icontains=term)[0:10]
                 for i in clients:
                     item = i.toJSON()
                     item['text'] = i.get_full_name()
@@ -182,7 +181,8 @@ class SaleUpdateView(ExistsCompanyMixin, ValidatePermissionRequiredMixin, Update
                 ids_exclude = json.loads(request.POST['ids'])
                 term = request.POST['term'].strip()
                 data.append({'id': term, 'text': term})
-                products = Product.objects.filter(name__icontains=term).filter(Q(stock__gt=0) | Q(is_inventoried=False))
+                products = Product.objects.filter(name__icontains=term)
+                print(products)
                 for i in products.exclude(id__in=ids_exclude)[0:10]:
                     item = i.toJSON()
                     item['text'] = i.__str__()
