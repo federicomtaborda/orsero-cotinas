@@ -170,6 +170,7 @@ class OrdenDeTrabajo(models.Model):
         ordering = ['id']
 
 
+
 # class SaleProduct(models.Model):
 #     sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
 #     product = models.ForeignKey(Product, on_delete=models.CASCADE)
